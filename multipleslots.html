@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+<body>
+    <div id="app">
+        <h1>Vue.js Slots Fundamental</h1>
+
+        <!-- we may want to use multiple slots for eg: we may want to display the desc. -->
+        <!-- we can pass them into the same slots but what if we want to display them somewhere else. This is where the named slots come to play -->
+
+
+        <todo-list> 
+            Buy Bananans
+            <!-- shorthand for v-slot is # -->
+            <template v-slot:description> 
+                <p>
+                    Bananas are good for health
+                </p>
+            </template>
+            
+            <!-- we can have our customized button  -->
+            <template #button-text>
+                Make it rain
+            </template>
+        </todo-list>
+        
+        
+        <todo-list> 
+            Eat Bananans
+        </todo-list>
+        <todo-list> Celebrate Bananans</todo-list>
+    </div>
+    
+    <script type="text/x-template" id="todo-list-template">
+        <div>
+            <input type="checkbox" v-model="completed">
+            <span :class="{done : completed}">
+                <slot></slot>
+            </span>
+            <slot name="description"></slot>
+
+            <!-- we can also have default button text so put the text iside slot if we have text in html that will be replaced here or it will be as it what we given in slot -->
+            <button><slot name="button-text">Default</slot></button>
+        </div>
+    </script>
+
+    <script src="multipleslots.js"></script>
+    <style>
+        .done{
+            color: green;
+            text-decoration: line-through;
+        }
+    </style>
+</body>
+</html>

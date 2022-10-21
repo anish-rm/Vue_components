@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app" class="container mx-auto py-6">
+        <div class="content">
+            <h1 class="title">Coffee Plans</h1>
+            <h2 class="subtitle">
+                We travel the world to source the very best single origin coffee for you
+            </h2>
+            <!-- <div class="plans"> 
+                we can send what to display in our child comp using props
+                <plan name="The Single" content></plan>
+                <plan name="The Curious" content></plan>
+                <plan name="The Addict" content></plan>
+                Instead of sending all this we can create array and send it to the child
+                <plan v-for="plan in plans" :key="plan.key" :name="plan.name" :content="plan.content"></plan>
+                Now both are same but we have completed in single line
+            </div>-->
+
+
+            <!-- The above plans div can be made a component and used anywhere -->
+            <plan-picker></plan-picker>
+            <plan-picker></plan-picker>
+
+            <!-- Now create a template for that -->
+
+        </div>
+    </div>
+
+    <script type="text/x-template" id="plan-picker-template">
+
+        <div class="plans">
+            <!-- we have used another component inside this component this is nested components -->
+            <plan v-for="plan in plans" :key="plan.key" :name="plan.name" :content="plan.content"></plan>
+        </div>
+
+    </script>
+    
+
+    <script type="text/x-template" id="plan-template">
+        <div class="plan">
+            <div class="description">
+                <span class="title">
+                    {{name}}
+                </span>
+                <div class="content">
+                    {{content}}
+                </div>
+            </div>
+        </div>
+    </script>
+    <script src="reusablecomp.js"></script>
+</body>
+</html>

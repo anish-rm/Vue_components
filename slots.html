@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+<body>
+    <div id="app">
+        <h1>Vue.js Slots Fundamental</h1>
+
+        <!-- Instead of passing the items into the comp using props we can use slots -->
+        <todo-list> Buy Bananans</todo-list>
+        <!-- we can also pass any html elements -->
+        <todo-list> 
+            <p>Eat Bananans</p>
+            <button>Hello</button>
+        </todo-list>
+        <todo-list> Celebrate Bananans</todo-list>
+    </div>
+    
+    <script type="text/x-template" id="todo-list-template">
+        <div>
+            <input type="checkbox" v-model="completed">
+
+
+            <!-- let us make strike trough when we click an item  -->
+            <!-- <slot :class="{done : completed}"></slot> -->
+
+            <!-- the above will not work because it slot is replaced whatever is passed in html so below will work -->
+
+            <span :class="{done : completed}">
+                <slot></slot>
+            </span>
+        </div>
+    </script>
+
+    <script src="slots.js"></script>
+    <style>
+        .done{
+            color: green;
+            text-decoration: line-through;
+        }
+    </style>
+</body>
+</html>
